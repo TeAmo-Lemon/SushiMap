@@ -47,14 +47,14 @@
 
 <style scoped>
 .about-container {
-    max-width: 1800px;
+    max-width: 800px;
     margin: 0 auto;
     /* margin-left: 20px;
     margin-right: 20px; */
-    padding: 3px;
+    padding: 2px;
     font-family: 'Arial', sans-serif;
     color: #333;
-    font-size: 30px;
+    font-size: 14px;
     line-height: 1.8;
 }
 

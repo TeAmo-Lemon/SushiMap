@@ -21,7 +21,7 @@ import TheNavBar from './components/TheNavBar.vue'
 .navbar {
   position: sticky;
   top: 0;
-  height: 60px;
+  /* height: 30px; */
   box-sizing: border-box;
   z-index: 1;
 }

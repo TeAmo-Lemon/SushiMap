@@ -21,11 +21,11 @@ nav {
     display: flex;
     background-color: #3e3e81;
     color: white;
-    padding: 3rem;
-    height: 60px;
+    padding: 1rem;
+    height: 50px;
     position: sticky;
     align-items: center;
-    overflow: inherit;
+    /* overflow: inherit; */
 }
 
 ul {
@@ -37,8 +37,9 @@ ul {
 }
 
 li {
-    margin-right: 2rem;
-    font-size: 30px;
+    /* margin-right: 2rem; */
+    margin-left: 1rem;
+    font-size: 18px;
 }
 
 a {
