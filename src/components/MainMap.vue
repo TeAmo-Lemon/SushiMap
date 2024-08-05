@@ -10,6 +10,7 @@ import { onMounted, ref } from 'vue';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import PoemContent from './PoemContent.vue';
+import cola from '@/assets/icons/cola.png';
 
 const contentVisibility = ref(false)
 
@@ -23,7 +24,7 @@ onMounted(() => {
     // 把这里的地址改成实际的地址
     ///tiles/{z}/{x}/{y}.png
     //https://raw.githubusercontent.com/TeAmo-Lemon/SushiMap/main/public/tiles/{z}/{x}/{y}.png
-    L.tileLayer("/tiles/{z}/{x}/{y}.png", {
+    L.tileLayer("https://raw.githubusercontent.com/TeAmo-Lemon/SushiMap/main/public/tiles/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 7, // 设置最大缩放级别，根据你的瓦片地图情况调整
         minZoom: 0,
@@ -31,7 +32,7 @@ onMounted(() => {
     }).addTo(map);
 
     var colaIcon = L.icon({
-        iconUrl: '/src/assets/icons/cola.png',
+        iconUrl: cola,
         iconSize: [38, 38], // size of the icon
     });
 
