@@ -8,7 +8,6 @@
             <li>
                 <RouterLink to="/about">关于本项目</RouterLink>
             </li>
-
         </ul>
     </nav>
 </template>
@@ -49,5 +48,9 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+RouterLink {
+    user-select: none;
 }
 </style>

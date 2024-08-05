@@ -1,11 +1,21 @@
 <template>
     <div id="map"></div>
+    <div class="poem">
+        <PoemContent v-model="contentVisibility" />
+    </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import PoemContent from './PoemContent.vue';
+
+const contentVisibility = ref(false)
+
+const onPopupClicked = (() => {
+    contentVisibility.value = true;
+})
 
 onMounted(() => {
     const map = L.map('map').setView([51.505, -0.09], 13);
@@ -20,9 +30,13 @@ onMounted(() => {
         noWrap: true,
     }).addTo(map);
 
-    // L.marker([51.505, -0.09]).addTo(map)
-    //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    //     .openPopup();
+    var colaIcon = L.icon({
+        iconUrl: '/src/assets/icons/cola.png',
+        iconSize: [38, 38], // size of the icon
+    });
+
+    L.marker([51.5, -0.09], { icon: colaIcon })
+        .addTo(map).on('click', onPopupClicked);
 });
 </script>
 
@@ -30,9 +44,10 @@ onMounted(() => {
 #map {
     display: flex;
     height: 100vh;
-    width: 100wh;
+    width: 100vw;
     padding: 0;
     margin: 0;
-    position: relative
+    position: relative;
+    z-index: 1;
 }
 </style>
