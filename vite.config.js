@@ -14,5 +14,8 @@ export default defineConfig({
       // '@': fileURLToPath(new URL('./src', import.meta.url))
       '@':'/src'
     }
+  },
+  build: {
+    assetsInlineLimit: 0,  // 禁用 Base64 转换
   }
 })

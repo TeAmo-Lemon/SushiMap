@@ -20,7 +20,7 @@
                     {{ appreciation }}
                 </p>
                 <div class="image-placeholder">
-                    <img :src="picture" alt="">
+                    <img :src="picture" alt="我是图片">
                 </div>
             </div>
         </div>
@@ -41,7 +41,6 @@ defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
     width: 70vw;
     height: 80vh;
     background-color: #f4efe6;
-    /* 温暖的米黄色背景 */
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -53,9 +52,7 @@ defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
     overflow: hidden;
     padding: 10px;
-    /* 增加内边距 */
     border: 2px solid #d3b58d;
-    /* 边框颜色类似于古典家具的木色 */
 }
 
 .close {
@@ -76,22 +73,18 @@ defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
 .content {
     display: flex;
     flex-direction: row;
+    /* align-items: center; */
     overflow: auto;
     height: 100%;
 }
 
-.poem {
-    display: flex;
-}
-
 .poem,
 .appreciation {
-    /* display: flex; */
     height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    padding: 20px;
+    padding: 10px;
     overflow: auto;
     box-sizing: border-box;
 }
@@ -104,13 +97,16 @@ defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
 }
 
 .poem {
+    display: flex;
     background-color: #f7f2e8;
-    /* 柔和的米白色背景 */
     border-right: 1px solid #d3b58d;
-    /* 分隔线 */
     flex: 1;
     font-size: large;
     flex-shrink: 0;
+}
+
+.poem p {
+    font-size: medium;
 }
 
 .appreciation {
@@ -125,23 +121,20 @@ defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
 h3 {
     margin: 0;
     padding-bottom: 10px;
-    font-size: 1.3em;
+    font-size: 1em;
     color: #333;
 }
 
 pre {
     font-family: 'handwriting';
     color: #555;
-    text-align: left;
-    font-size: 24px;
-}
-
-/* .appreciation p {
-    height: 100%;
+    text-align: center;
+    font-size: 22px;
     margin: 0;
-    font-size: 1em;
-    color: #666;
-} */
+    padding: 0;
+    max-width: 100%;
+    /* 确保宽度不会超过父容器 */
+}
 
 @keyframes fadeIn {
     from {
@@ -156,13 +149,64 @@ pre {
 .image-placeholder {
     width: 100%;
     height: 200px;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
+    /* color: #999; */
     font-size: 20px;
     margin: 20px 0;
     user-select: none;
 }
+
+.image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* 保持图片的纵横比 */
+}
+
+/* 响应式设计：针对较小屏幕 */
+@media (max-width: 768px) {
+    #container {
+        width: 70vw;
+        height: 75vh;
+    }
+
+    .content {
+        flex-direction: column;
+        /* 在小屏幕上内容纵向排列 */
+    }
+
+    .poem,
+    .appreciation {
+        flex: 1 1 100%;
+        /* 在小屏幕下，内容占据100%宽度，纵向排列 */
+    }
+
+    pre {
+        font-size: 20px;
+    }
+}
+
+/* 针对超小屏幕的优化，如手机 */
+/* @media (max-width: 480px) {
+    #container {
+        width: 100vw;
+        height: 90vh;
+        padding: 5px;
+    }
+
+    h3 {
+        font-size: 1.1em;
+    }
+
+    pre {
+        font-size: 18px;
+    }
+
+    .image-placeholder {
+        height: 150px;
+    }
+} */
 </style>

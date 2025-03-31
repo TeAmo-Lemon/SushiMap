@@ -11,7 +11,10 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "leaflet": "^1.9.4",
+    "leaflet.tilelayer.pouchdbcached": "github:MazeMap/Leaflet.TileLayer.PouchDBCached",
+    "pouchdb": "^9.0.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },

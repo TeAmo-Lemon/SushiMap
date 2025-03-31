@@ -1,0 +1,292 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "position": {
+                "longitude": 140,
+                "latitude": 60
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 2,
+            "position": {
+                "longitude": 20,
+                "latitude": 30
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 3,
+            "position": {
+                "longitude": -60,
+                "latitude": 35
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 4,
+            "position": {
+                "longitude": -51.767578125,
+                "latitude": 41.19518982948959
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 5,
+            "position": {
+                "longitude": 50,
+                "latitude": 45
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 6,
+            "position": {
+                "longitude": -20,
+                "latitude": 55
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 7,
+            "position": {
+                "longitude": 100,
+                "latitude": -10
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 8,
+            "position": {
+                "longitude": -100,
+                "latitude": 20
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 9,
+            "position": {
+                "longitude": 80,
+                "latitude": -30
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 10,
+            "position": {
+                "longitude": 10,
+                "latitude": 10
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 11,
+            "position": {
+                "longitude": -40,
+                "latitude": -40
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 12,
+            "position": {
+                "longitude": 75,
+                "latitude": 60
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 13,
+            "position": {
+                "longitude": 150,
+                "latitude": -0
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 14,
+            "position": {
+                "longitude": -75,
+                "latitude": 70
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 15,
+            "position": {
+                "longitude": 5,
+                "latitude": -25
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 16,
+            "position": {
+                "longitude": 120,
+                "latitude": 30
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 17,
+            "position": {
+                "longitude": 90,
+                "latitude": 40
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 18,
+            "position": {
+                "longitude": -110,
+                "latitude": 50
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 19,
+            "position": {
+                "longitude": 30,
+                "latitude": -15
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 20,
+            "position": {
+                "longitude": -45,
+                "latitude": 65
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 21,
+            "position": {
+                "longitude": 60,
+                "latitude": -35
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 22,
+            "position": {
+                "longitude": -20,
+                "latitude": 15
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 23,
+            "position": {
+                "longitude": 45,
+                "latitude": 25
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 24,
+            "position": {
+                "longitude": 85,
+                "latitude": -20
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 25,
+            "position": {
+                "longitude": -95,
+                "latitude": 5
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 26,
+            "position": {
+                "longitude": 130,
+                "latitude": -10
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 27,
+            "position": {
+                "longitude": -70,
+                "latitude": 35
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 28,
+            "position": {
+                "longitude": 110,
+                "latitude": 15
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 29,
+            "position": {
+                "longitude": -35,
+                "latitude": -5
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 30,
+            "position": {
+                "longitude": 55,
+                "latitude": 50
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 31,
+            "position": {
+                "longitude": 40,
+                "latitude": -40
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 32,
+            "position": {
+                "longitude": -80,
+                "latitude": 25
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 33,
+            "position": {
+                "longitude": 15,
+                "latitude": 10
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 34,
+            "position": {
+                "longitude": 105,
+                "latitude": 20
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 35,
+            "position": {
+                "longitude": -85,
+                "latitude": -15
+            },
+            "icon": "/icons/pos.png"
+        },
+        {
+            "id": 36,
+            "position": {
+                "longitude": 135,
+                "latitude": 5
+            },
+            "icon": "/icons/pos.png"
+        }
+    ]
+}

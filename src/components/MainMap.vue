@@ -18,7 +18,7 @@ const title = ref("");
 const poem = ref("");
 const note = ref("This is an explanation");
 const appreciation = ref("Here comes note");
-const picture = ref("/src/assets/icons/cola.png");
+const picture = ref("https://p6.itc.cn/q_70/images03/20220913/62bf440e68ac41c2a72be3cca9b1de4b.jpeg");
 
 const onPopupClicked = async (id) => {
     contentVisibility.value = true;
@@ -44,39 +44,48 @@ const onPopupClicked = async (id) => {
 onMounted(() => {
     const map = L.map('map').setView([0, 0], 1);
 
-    // 把这里的地址改成实际的地址
-    ///tiles/{z}/{x}/{y}.png
-    //https://raw.githubusercontent.com/TeAmo-Lemon/SushiMap/main/public/tiles/{z}/{x}/{y}.png
-    L.tileLayer("/tiles/{z}/{x}/{y}.png", {
+    // 添加地图点击事件监听器
+    map.on('click', (e) => {
+        const { lat, lng } = e.latlng;
+        console.log(`Clicked coordinates: Latitude: ${lat}, Longitude: ${lng}`);
+    });
+
+    // 读取 positions.json 文件
+    const positionUrl = new URL(`../positions/position.json`, import.meta.url)
+    fetch(positionUrl)
+        .then(response => response.json())
+        .then(data => {
+            // 处理从 JSON 文件中读取的数据
+            data.items.forEach(item => {
+                const position = item.position;
+
+                console.log(item.id);
+                const iconUrl = () => { return new URL(item.icon, import.meta.url); }
+                // 检查 item 是否有定义的 icon URL
+                const customIcon = L.icon({
+                    iconUrl: iconUrl(),
+                    iconSize: [32, 32], // 设置图标大小
+                    iconAnchor: [16, 32] // 图标的锚点，决定了图标放置时相对于其位置的偏移
+                });
+
+                // 添加标记点到地图
+                L.marker([position.latitude, position.longitude], { icon: customIcon })
+                    .addTo(map)
+                    .on('click', () => onPopupClicked(item.id));
+            });
+        })
+        .catch(error => {
+            console.error('Error loading positions.json:', error);
+        });
+
+
+    L.tileLayer("/output_tiles/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 7, // 设置最大缩放级别，根据你的瓦片地图情况调整
+        maxZoom: 7, 
         minZoom: 0,
         noWrap: true,
+        tileSize: L.point(256, 161)
     }).addTo(map);
-
-    var colaIcon = L.icon({
-        iconUrl: cola,
-        iconSize: [38, 38], // size of the icon
-    });
-
-    var closeIcon = L.icon({
-        iconUrl: '/src/assets/icons/close.png',
-        iconSize: [38, 38], // size of the icon
-    });
-
-    // 定义一个包含多个位置和图标信息的数组
-    const markersData = [
-        { position: [90, 0], icon: colaIcon, id: '1' },
-        { position: [29, 120], icon: colaIcon, id: '1' },
-    ];
-
-    // 遍历数组并添加标记
-    markersData.forEach(marker => {
-        L.marker(marker.position, { icon: marker.icon })
-            .addTo(map)
-            .on('click', () => onPopupClicked(marker.id));
-    });
-
 });
 </script>
 
