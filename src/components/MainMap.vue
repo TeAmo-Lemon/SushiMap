@@ -81,7 +81,7 @@ onMounted(() => {
 
     L.tileLayer("/output_tiles/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 7, 
+        maxZoom: 7,
         minZoom: 0,
         noWrap: true,
         tileSize: L.point(256, 161)
