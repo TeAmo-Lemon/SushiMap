@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 import TheNavBar from './TheNavBar.vue'
 import MainView from './MainView.vue'
-
+import { currentUserService } from '@/api/user.js'
 import { ref } from 'vue'
 
-const handleSelect = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+const getUser = async () => {
+    await currentUserService()
 }
+getUser()
+
 </script>
 
 <template>
@@ -49,7 +51,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
     padding: 0;
     background: transparent !important;
     /* 强制透明背景 */
-    z-index: 1000;
+    z-index: 1;
     /* 确保在内容上方 */
 }
 </style>
