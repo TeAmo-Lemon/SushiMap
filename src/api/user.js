@@ -2,8 +2,21 @@ import request from "@/utils/request.js"
 
 // 登录接口调用函数
 export const userLoginService = (loginData) => {
-    return request.post('/user/login', loginData)
+    return request.post('/users/login', loginData)
 }
+
+export const userEmailService = (email) => {
+    return request.post('/users/sendCode', email)
+}
+
+
+
+
+
+
+
+
+
 
 // 获取当前登录用户信息
 export const currentUserService = () => {

@@ -72,7 +72,6 @@ const login = async () => {
 
     } catch (error) {
         // 错误处理
-        console.error('登录失败:', error)
         ElMessage.error(error.response?.data?.message || '登录失败，请检查输入')
     }
 }

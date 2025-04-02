@@ -38,17 +38,14 @@ instance.interceptors.response.use(
             return result.data;
         }
         // 操作失败
-        ElMessage.error(result.data.message ? result.data.message : '服务异常')
+        // ElMessage.error(result.data.message ? result.data.message : '服务异常')
         // 异步操作的状态转换为失败
         return Promise.reject(result.data)
     },
     err => {
         // 判断响应状态码， 401为未登录，提示登录并跳转到登录页面
-        if (err.response.status === 401) {
+        if (err.response.status === 403) {
             ElMessage.error('请先登录')
-            router.push('/login')
-        } else {
-            ElMessage.error('服务异常')
             router.push('/login')
         }
         // 异步操作的状态转换为失败

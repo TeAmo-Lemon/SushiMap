@@ -10,29 +10,43 @@
                 <p>{{ isLiterary ? translations.literary.subtitle : translations.normal.subtitle }}</p>
             </div>
 
-            <form class="register-form">
+            <form class="register-form" @submit.prevent="handleSubmit">
                 <div class="form-group">
                     <label>{{ isLiterary ? translations.literary.username : translations.normal.username }}</label>
-                    <input type="text" v-model="username"
+                    <input type="text" v-model="registerData.loginName"
                         :placeholder="isLiterary ? translations.literary.usernamePlaceholder : translations.normal.usernamePlaceholder"
                         required>
                 </div>
 
                 <div class="form-group">
                     <label>{{ isLiterary ? translations.literary.email : translations.normal.email }}</label>
-                    <input type="email" v-model="email"
+                    <input type="email" v-model="registerData.email"
                         :placeholder="isLiterary ? translations.literary.emailPlaceholder : translations.normal.emailPlaceholder"
                         required>
                 </div>
 
                 <div class="form-group">
-                    <label>密语</label>
-                    <input type="password" v-model="password" placeholder="请输入密码" required>
+                    <label>{{ isLiterary ? translations.literary.password : translations.normal.password }}</label>
+                    <input type="password" v-model="registerData.password" placeholder="请输入密码" required>
                 </div>
 
                 <div class="form-group">
-                    <label>复述密语</label>
+                    <label>{{ isLiterary ? translations.literary.confirmPassword :
+                translations.normal.confirmPassword }}</label>
                     <input type="password" v-model="confirmPassword" placeholder="请再次输入密码" required>
+                </div>
+
+                <div class="form-group captcha-group">
+                    <label>{{ isLiterary ? translations.literary.captcha : translations.normal.captcha }}</label>
+                    <div class="captcha-wrapper">
+                        <input type="text" v-model="registerData.captcha"
+                            :placeholder="isLiterary ? translations.literary.captchaPlaceholder : translations.normal.captchaPlaceholder"
+                            required>
+                        <button type="button" class="captcha-btn" :disabled="captchaCountdown > 0" @click="getCaptcha">
+                            {{ captchaCountdown > 0 ? `${captchaCountdown}秒后重试` : (isLiterary ?
+                translations.literary.captchaBtn : translations.normal.captchaBtn) }}
+                        </button>
+                    </div>
                 </div>
 
                 <button type="submit" class="register-btn">
@@ -53,14 +67,23 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { ElMessage } from 'element-plus'
 
 const router = useRouter()
-const username = ref('')
-const email = ref('')
-const password = ref('')
+
+const isLiterary = ref(false) // 新增文艺/常规切换状态
+
 const confirmPassword = ref('')
-const isLiterary = ref(true) // 新增文艺/常规切换状态
+const captcha = ref('') // 验证码输入
+const captchaCountdown = ref(0) // 验证码倒计时
+
+
+const registerData = ref({
+    loginName: '',
+    email: '',
+    password: '',
+    captcha: '' // 验证码输入
+})
 
 // 翻译映射表
 const translations = {
@@ -71,13 +94,16 @@ const translations = {
         email: "飞鸿",
         password: "密语",
         confirmPassword: "复述密语",
+        captcha: "验符",
         submit: "落 印",
         footerText: "已是座上客？",
         footerLink: "请入雅座",
         usernamePlaceholder: "请输入雅号",
         emailPlaceholder: "请输入飞鸿传书",
         passwordPlaceholder: "请设密语",
-        confirmPlaceholder: "请再述密语"
+        confirmPlaceholder: "请再述密语",
+        captchaPlaceholder: "请输入验符",
+        captchaBtn: "索取验符"
     },
     normal: {
         title: "用户注册",
@@ -86,17 +112,94 @@ const translations = {
         email: "邮箱",
         password: "密码",
         confirmPassword: "确认密码",
+        captcha: "验证码",
         submit: "注 册",
         footerText: "已有账号？",
         footerLink: "立即登录",
         usernamePlaceholder: "请输入账号",
         emailPlaceholder: "请输入邮箱",
         passwordPlaceholder: "请输入密码",
-        confirmPlaceholder: "请再次输入密码"
+        confirmPlaceholder: "请再次输入密码",
+        captchaPlaceholder: "请输入验证码",
+        captchaBtn: "获取验证码"
     }
 }
 
+import { userEmailService } from '@/api/user.js'
 
+const checkEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 简单的邮箱验证
+    if (!emailRegex.test(registerData.value.email)) {
+        return false
+    }
+}
+
+// 获取验证码
+const getCaptcha = async () => {
+    if (!registerData.value.email) {
+        ElMessage.error(isLiterary.value ? '请先填飞鸿' : '请先填写邮箱');
+        return;
+    }
+
+    if (checkEmail()) {
+        ElMessage.error(isLiterary.value ? '飞鸿有误' : '邮箱格式错误');
+        return;
+    }
+
+    let timeout = false; // 用于标记是否超时
+    const TIMEOUT_DURATION = 5000; // 设定超时时间 (5秒)
+
+    // 设定超时提示
+    const timeoutHandler = setTimeout(() => {
+        timeout = true;
+        ElMessage.warning('服务器响应超时，请稍后重试');
+    }, TIMEOUT_DURATION);
+
+    try {
+        // 发送验证码请求
+        const res = await userEmailService({ email: registerData.value.email });
+
+        clearTimeout(timeoutHandler); // 请求成功，清除超时定时器
+
+        if (!timeout) { // 确保不是超时后才返回的结果
+            if (res.code == 0) {
+                ElMessage.success(isLiterary.value ? '飞鸿已传，速查飞鸿' : '验证码已发送，请查收邮箱');
+            } else {
+                ElMessage.error('验证码发送失败');
+            }
+        }
+    } catch (error) {
+        clearTimeout(timeoutHandler); // 请求异常，清除超时定时器
+        if (!timeout) {
+            ElMessage.error('网络异常，请稍后重试');
+        }
+    }
+
+    // 模拟倒计时
+    captchaCountdown.value = 60;
+    const timer = setInterval(() => {
+        captchaCountdown.value--;
+        if (captchaCountdown.value <= 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
+};
+
+
+// 提交注册表单
+const handleSubmit = () => {
+    if (password.value !== confirmPassword.value) {
+        ElMessage.error(isLiterary.value ? '密语不合' : '两次密码不一致')
+        return
+    }
+    if (!captcha.value) {
+        ElMessage.error(isLiterary.value ? '验符不可空' : '验证码不能为空')
+        return
+    }
+    // 这里可以添加实际的注册请求逻辑
+    ElMessage.success(isLiterary.value ? '入册成功，速入雅座' : '注册成功，请登录')
+    router.push('/login')
+}
 </script>
 
 <style scoped>
@@ -116,7 +219,6 @@ const translations = {
     box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07);
     transition: transform 0.3s ease;
     position: relative;
-    /* 新增相对定位 */
 }
 
 .translate-toggle {
@@ -177,6 +279,43 @@ input:focus {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
 }
 
+.captcha-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.captcha-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.captcha-wrapper input {
+    width: calc(60% - 32px);
+    /* 调整验证码输入框宽度 */
+}
+
+.captcha-btn {
+    width: 40%;
+    padding: 12px;
+    background: linear-gradient(to right, #68d391, #48bb78);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.captcha-btn:disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+}
+
+.captcha-btn:hover:not(:disabled) {
+    background: linear-gradient(to right, #48bb78, #38a169);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .register-btn {
     width: 100%;
     padding: 14px;
@@ -213,24 +352,4 @@ input:focus {
 .register-footer a:hover {
     text-decoration: underline;
 }
-
-/* 新增切换按钮样式 */
-.translate-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 5px 10px;
-    background: rgba(140, 47, 27, 0.1);
-    border-radius: 4px;
-    font-size: 12px;
-    color: #8c2f1b;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.translate-toggle:hover {
-    background: rgba(140, 47, 27, 0.2);
-}
-
-/* 其他样式保持不变 */
 </style>
