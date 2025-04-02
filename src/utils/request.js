@@ -49,6 +49,7 @@ instance.interceptors.response.use(
             router.push('/login')
         } else {
             ElMessage.error('服务异常')
+            router.push('/login')
         }
         // 异步操作的状态转换为失败
         return Promise.reject(err)
