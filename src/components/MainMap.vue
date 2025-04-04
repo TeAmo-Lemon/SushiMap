@@ -59,7 +59,7 @@ onMounted(() => {
             data.items.forEach(item => {
                 const position = item.position;
 
-                console.log(item.id);
+                // console.log(item.id);
                 const iconUrl = () => { return new URL(item.icon, import.meta.url); }
                 // 检查 item 是否有定义的 icon URL
                 const customIcon = L.icon({

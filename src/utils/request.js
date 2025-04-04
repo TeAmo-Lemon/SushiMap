@@ -34,9 +34,10 @@ import router from "@/router";
 instance.interceptors.response.use(
     result => {
         // 判断业务状态码
-        if (result.data.code === 0) {
-            return result.data;
-        }
+        // if (result.data.code === 0) {
+        //     return result.data;
+        // }
+        return result.data;
         // 操作失败
         // ElMessage.error(result.data.message ? result.data.message : '服务异常')
         // 异步操作的状态转换为失败

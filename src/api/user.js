@@ -9,6 +9,9 @@ export const userEmailService = (email) => {
     return request.post('/users/sendCode', email)
 }
 
+export const userRegisterService = (registerData) => {
+    return request.post('/users/register', registerData)
+}
 
 
 

@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '', // 修正为有效的重定向路径
+    redirect: '/login', // 修正为有效的重定向路径
     children: [
       {
         path: '/home',

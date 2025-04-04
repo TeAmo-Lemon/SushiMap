@@ -74,7 +74,6 @@ const router = useRouter()
 const isLiterary = ref(false) // 新增文艺/常规切换状态
 
 const confirmPassword = ref('')
-const captcha = ref('') // 验证码输入
 const captchaCountdown = ref(0) // 验证码倒计时
 
 
@@ -126,6 +125,7 @@ const translations = {
 }
 
 import { userEmailService } from '@/api/user.js'
+import { userRegisterService } from "@/api/user.js";
 
 const checkEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 简单的邮箱验证
@@ -163,12 +163,19 @@ const getCaptcha = async () => {
 
         if (!timeout) { // 确保不是超时后才返回的结果
             if (res.code == 0) {
-                ElMessage.success(isLiterary.value ? '飞鸿已传，速查飞鸿' : '验证码已发送，请查收邮箱');
+                if (res.msg !== "60") {
+                    captchaCountdown.value = Number(res.msg);
+                    ElMessage.error(`请在${res.msg}秒后重试`);
+                } else {
+                    captchaCountdown.value = 60;
+                    ElMessage.success(isLiterary.value ? '飞鸿已传，速查飞鸿' : '验证码已发送，请查收邮箱');
+                }
             } else {
-                ElMessage.error('验证码发送失败');
+                ElMessage.error(res.msg);
             }
         }
     } catch (error) {
+        console.log(error);
         clearTimeout(timeoutHandler); // 请求异常，清除超时定时器
         if (!timeout) {
             ElMessage.error('网络异常，请稍后重试');
@@ -176,7 +183,6 @@ const getCaptcha = async () => {
     }
 
     // 模拟倒计时
-    captchaCountdown.value = 60;
     const timer = setInterval(() => {
         captchaCountdown.value--;
         if (captchaCountdown.value <= 0) {
@@ -188,17 +194,26 @@ const getCaptcha = async () => {
 
 // 提交注册表单
 const handleSubmit = () => {
-    if (password.value !== confirmPassword.value) {
+
+    if (registerData.value.password !== confirmPassword.value) {
         ElMessage.error(isLiterary.value ? '密语不合' : '两次密码不一致')
         return
     }
-    if (!captcha.value) {
+    if (!registerData.value.captcha) {
         ElMessage.error(isLiterary.value ? '验符不可空' : '验证码不能为空')
         return
     }
-    // 这里可以添加实际的注册请求逻辑
-    ElMessage.success(isLiterary.value ? '入册成功，速入雅座' : '注册成功，请登录')
-    router.push('/login')
+
+    userRegisterService(registerData.value).then(res => {
+        if (res.code == 0) {
+            ElMessage.success(isLiterary.value ? '入册成功，速入雅座' : '注册成功，请登录')
+            router.push('/login')
+        } else {
+            console.log(res.msg)
+            ElMessage.error(res.msg)
+        }
+    })
+
 }
 </script>
 
