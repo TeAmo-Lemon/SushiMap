@@ -3,24 +3,24 @@
         {
             "id": 1,
             "position": {
-                "longitude": 140,
-                "latitude": 60
+                "longitude": -50.845,
+                "latitude": 52.476
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 2,
             "position": {
-                "longitude": 20,
-                "latitude": 30
+                "longitude": -50.07,
+                "latitude": 52.509
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 3,
             "position": {
-                "longitude": -60,
-                "latitude": 35
+                "longitude": -52.065,
+                "latitude": 52.749
             },
             "icon": "/icons/pos.png"
         },
@@ -35,256 +35,136 @@
         {
             "id": 5,
             "position": {
-                "longitude": 50,
-                "latitude": 45
+                "longitude": -54.494,
+                "latitude": 58.619
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 6,
             "position": {
-                "longitude": -20,
-                "latitude": 55
+                "longitude": -49.287,
+                "latitude": 58.745
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 7,
             "position": {
-                "longitude": 100,
-                "latitude": -10
+                "longitude": 66.572,
+                "latitude": 64.434
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 8,
             "position": {
-                "longitude": -100,
-                "latitude": 20
+                "longitude": 68.662,
+                "latitude": 63.99
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 9,
             "position": {
-                "longitude": 80,
-                "latitude": -30
+                "longitude": -59.504,
+                "latitude": 58.240
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 10,
             "position": {
-                "longitude": 10,
-                "latitude": 10
+                "longitude": -42.168,
+                "latitude": 63.292
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 11,
             "position": {
-                "longitude": -40,
-                "latitude": -40
+                "longitude": -55.307,
+                "latitude": 51.358
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 12,
             "position": {
-                "longitude": 75,
-                "latitude": 60
+                "longitude": -44.01,
+                "latitude": 60.207
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 13,
             "position": {
-                "longitude": 150,
-                "latitude": -0
+                "longitude": -49.560,
+                "latitude": 55.758
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 14,
             "position": {
-                "longitude": -75,
-                "latitude": 70
+                "longitude": -55.725,
+                "latitude": 55.366
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 15,
             "position": {
-                "longitude": 5,
-                "latitude": -25
+                "longitude": -48.527,
+                "latitude": 55.714
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 16,
             "position": {
-                "longitude": 120,
-                "latitude": 30
+                "longitude": -43.75,
+                "latitude": 54.826
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 17,
             "position": {
-                "longitude": 90,
-                "latitude": 40
+                "longitude": -45.332,
+                "latitude": 54.813
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 18,
             "position": {
-                "longitude": -110,
-                "latitude": 50
+                "longitude": -58.672,
+                "latitude": 41.376
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 19,
             "position": {
-                "longitude": 30,
-                "latitude": -15
+                "longitude": -65.920,
+                "latitude": 18.667
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 20,
             "position": {
-                "longitude": -45,
-                "latitude": 65
+                "longitude": -47.72,
+                "latitude": 84.802
             },
             "icon": "/icons/pos.png"
         },
         {
             "id": 21,
             "position": {
-                "longitude": 60,
-                "latitude": -35
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 22,
-            "position": {
-                "longitude": -20,
-                "latitude": 15
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 23,
-            "position": {
-                "longitude": 45,
-                "latitude": 25
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 24,
-            "position": {
-                "longitude": 85,
-                "latitude": -20
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 25,
-            "position": {
-                "longitude": -95,
-                "latitude": 5
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 26,
-            "position": {
-                "longitude": 130,
-                "latitude": -10
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 27,
-            "position": {
-                "longitude": -70,
-                "latitude": 35
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 28,
-            "position": {
-                "longitude": 110,
-                "latitude": 15
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 29,
-            "position": {
-                "longitude": -35,
-                "latitude": -5
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 30,
-            "position": {
-                "longitude": 55,
-                "latitude": 50
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 31,
-            "position": {
-                "longitude": 40,
-                "latitude": -40
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 32,
-            "position": {
-                "longitude": -80,
-                "latitude": 25
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 33,
-            "position": {
-                "longitude": 15,
-                "latitude": 10
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 34,
-            "position": {
-                "longitude": 105,
-                "latitude": 20
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 35,
-            "position": {
-                "longitude": -85,
-                "latitude": -15
-            },
-            "icon": "/icons/pos.png"
-        },
-        {
-            "id": 36,
-            "position": {
-                "longitude": 135,
-                "latitude": 5
+                "longitude": -49.617,
+                "latitude": 84.189
             },
             "icon": "/icons/pos.png"
         }
