@@ -1,5 +1,5 @@
 <template>
-    <div id="container" v-if='contentVisibility'>
+    <div id="container" v-if="contentVisibility">
         <div class="close">
             <button @click="contentVisibility = false">
                 <img src="@/assets/icons/multiply.svg" alt="X" />
@@ -8,9 +8,7 @@
         <div class="content">
             <div class="poem">
                 <h3>{{ title }}</h3>
-                <pre>
-{{ poem }}
-                </pre>
+                <pre>{{ poem }}</pre>
                 <p>
                     {{ note }}
                 </p>
@@ -24,15 +22,20 @@
                 </div>
             </div>
         </div>
+        <div class="audio-player">
+            <audio controls>
+                <source :src="`/poemsaudio/${poemid}.mp3`" type="audio/mp3" />
+                您的浏览器不支持音频播放。
+            </audio>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const contentVisibility = defineModel()
-defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
-
+const contentVisibility = defineModel();
+defineProps(['poemid', 'title', 'poem', 'note', 'appreciation', 'picture', 'audioUrl']);
 </script>
 
 <style scoped>
@@ -73,7 +76,6 @@ defineProps(['title', 'poem', 'note', 'appreciation', 'picture']);
 .content {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     overflow: auto;
     height: 100%;
 }
@@ -133,7 +135,6 @@ pre {
     margin: 0;
     padding: 0;
     max-width: 100%;
-    /* 确保宽度不会超过父容器 */
 }
 
 @keyframes fadeIn {
@@ -149,11 +150,9 @@ pre {
 .image-placeholder {
     width: 100%;
     height: 200px;
-    /* background-color: #f0f0f0; */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* color: #999; */
     font-size: 20px;
     margin: 20px 0;
     user-select: none;
@@ -163,10 +162,24 @@ pre {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    /* 保持图片的纵横比 */
 }
 
-/* 响应式设计：针对较小屏幕 */
+.audio-player {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f7f2e8;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #d3b58d;
+}
+
+audio {
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    outline: none;
+}
+
 @media (max-width: 768px) {
     #container {
         width: 70vw;
@@ -175,38 +188,19 @@ pre {
 
     .content {
         flex-direction: column;
-        /* 在小屏幕上内容纵向排列 */
     }
 
     .poem,
     .appreciation {
         flex: 1 1 100%;
-        /* 在小屏幕下，内容占据100%宽度，纵向排列 */
     }
 
     pre {
         font-size: 20px;
     }
+
+    .audio-player {
+        margin-top: 15px;
+    }
 }
-
-/* 针对超小屏幕的优化，如手机 */
-/* @media (max-width: 480px) {
-    #container {
-        width: 100vw;
-        height: 90vh;
-        padding: 5px;
-    }
-
-    h3 {
-        font-size: 1.1em;
-    }
-
-    pre {
-        font-size: 18px;
-    }
-
-    .image-placeholder {
-        height: 150px;
-    }
-} */
 </style>

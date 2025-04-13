@@ -1,8 +1,8 @@
 <template>
     <div id="map"></div>
     <div class="poem">
-        <PoemContent v-model="contentVisibility" :title="title" :poem="poem" :note="note" :appreciation="appreciation"
-            :picture="picture" />
+        <PoemContent v-model="contentVisibility" :poemid="poemid" :title="title" :poem="poem" :note="note"
+            :appreciation="appreciation" :picture="picture" />
     </div>
 </template>
 
@@ -15,6 +15,7 @@ import cola from '/src/assets/icons/cola.png';
 import { getPositionsService } from "@/api/poem.js";
 import { getPoemsService } from '@/api/poem.js';
 const contentVisibility = ref(false);
+const poemid = ref("");
 const title = ref("");
 const poem = ref("");
 const note = ref("This is an explanation");
@@ -28,6 +29,7 @@ const onPopupClicked = async (id) => {
         contentVisibility.value = true;
 
         // 将读取到的数据赋值给响应式变量
+        poemid.value = id;
         title.value = result.data.title;
         poem.value = result.data.poem;
         note.value = result.data.note;
