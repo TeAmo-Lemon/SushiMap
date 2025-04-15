@@ -45,8 +45,8 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
 const registerData = ref({
-    loginName: 'admin',
-    password: '123456',
+    loginName: '',
+    password: '',
 })
 
 const isLiterary = ref(true)

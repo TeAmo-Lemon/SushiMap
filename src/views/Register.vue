@@ -27,12 +27,13 @@
 
                 <div class="form-group">
                     <label>{{ isLiterary ? translations.literary.password : translations.normal.password }}</label>
-                    <input type="password" v-model="registerData.password" placeholder="请输入密码" required>
+                    <input type="password" v-model="registerData.password"
+                        :placeholder="isLiterary ? '密语需含大小写且长于六位' : '密码需包含大小写字母且长度大于6位'" required>
                 </div>
 
                 <div class="form-group">
                     <label>{{ isLiterary ? translations.literary.confirmPassword :
-                translations.normal.confirmPassword }}</label>
+                        translations.normal.confirmPassword }}</label>
                     <input type="password" v-model="confirmPassword" placeholder="请再次输入密码" required>
                 </div>
 
@@ -44,7 +45,7 @@
                             required>
                         <button type="button" class="captcha-btn" :disabled="captchaCountdown > 0" @click="getCaptcha">
                             {{ captchaCountdown > 0 ? `${captchaCountdown}秒后重试` : (isLiterary ?
-                translations.literary.captchaBtn : translations.normal.captchaBtn) }}
+                                translations.literary.captchaBtn : translations.normal.captchaBtn) }}
                         </button>
                     </div>
                 </div>
@@ -129,9 +130,7 @@ import { userRegisterService } from "@/api/user.js";
 
 const checkEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 简单的邮箱验证
-    if (!emailRegex.test(registerData.value.email)) {
-        return false
-    }
+    return emailRegex.test(registerData.value.email);
 }
 
 // 获取验证码
@@ -141,7 +140,7 @@ const getCaptcha = async () => {
         return;
     }
 
-    if (checkEmail()) {
+    if (!checkEmail()) {  // 修改为检查返回false的情况
         ElMessage.error(isLiterary.value ? '飞鸿有误' : '邮箱格式错误');
         return;
     }
@@ -192,8 +191,18 @@ const getCaptcha = async () => {
 };
 
 
+const checkPassword = () => {
+    const password = registerData.value.password;
+    // 密码长度大于6位且包含大小写字母
+    return password.length >= 6 && /[a-z]/.test(password);
+}
+
 // 提交注册表单
 const handleSubmit = () => {
+    if (!checkPassword()) {
+        ElMessage.error(isLiterary.value ? '密语需含字母和数字且长于六位' : '密码需包含字母和数字且长度大于6位');
+        return;
+    }
 
     if (registerData.value.password !== confirmPassword.value) {
         ElMessage.error(isLiterary.value ? '密语不合' : '两次密码不一致')
