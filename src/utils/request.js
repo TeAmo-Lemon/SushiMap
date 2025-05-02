@@ -41,7 +41,7 @@ instance.interceptors.response.use(
         // 操作失败
         // ElMessage.error(result.data.message ? result.data.message : '服务异常')
         // 异步操作的状态转换为失败
-        return Promise.reject(result.data)
+        // return Promise.reject(result.data)
     },
     err => {
         // 判断响应状态码， 401为未登录，提示登录并跳转到登录页面

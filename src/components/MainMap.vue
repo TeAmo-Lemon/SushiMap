@@ -20,7 +20,7 @@ const title = ref("");
 const poem = ref("");
 const note = ref("This is an explanation");
 const appreciation = ref("Here comes note");
-const picture = ref("https://p6.itc.cn/q_70/images03/20220913/62bf440e68ac41c2a72be3cca9b1de4b.jpeg");
+const picture = ref("");
 
 const onPopupClicked = async (id) => {
     try {

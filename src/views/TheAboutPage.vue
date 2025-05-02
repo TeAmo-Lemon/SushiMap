@@ -4,8 +4,8 @@
         <p>苏轼（1037-1101），字子瞻，号东坡居士，北宋著名的文学家、书法家、画家和政治家。他的诗文不仅在中国文学史上具有重要地位，而且对后世产生了深远影响。本项目旨在通过现代技术手段，将苏轼的诗文以可视化的形式展现，帮助更多人理解和欣赏他的文学作品。
         </p>
 
-        <div class="image-placeholder">
-            <p>图片位置</p>
+        <div class="image-container">
+            <img src="/sushi1.png" alt="苏轼图片" class="responsive-image">
         </div>
 
         <h2>项目背景</h2>
@@ -20,24 +20,15 @@
             <li>探索苏轼徐州诗文的可视化路径，揭示其在当下进行可视化研究的必要性和实践价值。</li>
         </ul>
 
-        <div class="image-placeholder">
-            <p>图片位置</p>
+        <div class="image-container">
+            <img src="/xuzhou.png" alt="苏轼图片" class="responsive-image">
         </div>
-        <!-- 
-        <h2>项目内容</h2>
-        <p>本项目将包括以下几个主要模块：</p>
-        <ol>
-            <li><strong>诗文数据库：</strong>收集和整理苏轼的诗文作品，并进行分类和标注。</li>
-            <li><strong>可视化分析工具：</strong>开发多种数据可视化工具，帮助用户分析和理解苏轼的诗文。工具将包括词频分析、主题分析、情感分析和时间轴展示等。</li>
-            <li><strong>用户互动平台：</strong>建立一个在线平台，用户可以上传自己的分析结果，与其他用户交流和分享。平台将提供互动讨论区、注释功能和个性化推荐系统。</li>
-            <li><strong>教育资源：</strong>开发针对学生和教师的教育资源，包括教学课件、学习指南和在线课程。</li>
-        </ol> -->
 
         <h2>项目团队</h2>
         <p>本项目由一支跨学科团队共同完成，成员来自汉语言文学，环境设计和计算机科学与技术专业。团队成员致力于通过现代技术手段，推动传统文化的传承和发展。</p>
 
-        <div class="image-placeholder">
-            <p>图片位置</p>
+        <div class="image-container">
+            <img src="/members.png" alt="苏轼图片" class="responsive-image">
         </div>
     </div>
 </template>
@@ -85,16 +76,23 @@ li {
     margin-bottom: 10px;
 }
 
-.image-placeholder {
+.image-container {
     width: 100%;
-    height: 200px;
-    background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-size: 20px;
     margin: 20px 0;
-    border: 1px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.responsive-image:hover {
+    transform: scale(1.02);
 }
 </style>

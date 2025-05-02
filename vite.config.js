@@ -19,20 +19,25 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8989', // 后端服务器地址
+        target: 'http://127.0.0.1:8989', // 后端服务器地址
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        configure: (proxy, options) => {
+          proxy.on('error', (err, req, res) => {
+            console.log('proxy error', err);
+          });
+        }
       }
     }
   },
-  // build: {
-  //   assetsInlineLimit: 0,  // 禁用 Base64 转换
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         'vendor': ['vue', 'vue-router', 'pinia']
-  //       }
-  //     }
-  //   }
-  // }
+  build: {
+    assetsInlineLimit: 0,  // 禁用 Base64 转换
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['vue', 'vue-router', 'pinia']
+        }
+      }
+    }
+  }
 })

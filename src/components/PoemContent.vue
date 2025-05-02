@@ -18,7 +18,7 @@
                     {{ appreciation }}
                 </p>
                 <div class="image-placeholder">
-                    <img :src="picture" alt="我是图片">
+                    <!-- <img :src="picture" alt="我是图片"> -->
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@ pre {
     }
 }
 
-.image-placeholder {
+/* .image-placeholder {
     width: 100%;
     height: 200px;
     display: flex;
@@ -156,7 +156,7 @@ pre {
     font-size: 20px;
     margin: 20px 0;
     user-select: none;
-}
+} */
 
 .image-placeholder img {
     max-width: 100%;
